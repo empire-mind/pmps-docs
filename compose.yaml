@@ -1,0 +1,14 @@
+services:
+  control:
+    build: .
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    volumes:
+      - ./data:/app/data
+      - ./intake:/app/intake:ro
+    tmpfs:
+      - /tmp
+    network_mode: none

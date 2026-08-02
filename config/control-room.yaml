@@ -1,0 +1,156 @@
+schema_version: "1.0"
+entity:
+  legal_name: "Premium Mobile Plant Solutions Pty Ltd"
+  short_name: "PMPS"
+
+authorities:
+  controlled_files: "Google Drive"
+  document_identity_and_state: "Master Document Register"
+  human_control_room: "Notion"
+  delivery_work: "Linear"
+  code_config_and_tests: "GitHub"
+  finance_transactions: "Xero"
+  recruitment_transactions: "JobAdder"
+  attendance_evidence: "TrackEasy"
+
+principals:
+  operational_owner: "Ashley Halvorson"
+  technical_owner: "Eli Halvorson"
+  directors:
+    - "Ashley Halvorson"
+    - "Eli Halvorson"
+
+drive:
+  shared_drive_id: "0AGC3u-mEfahxUk9PVA"
+  foundations_folder_id: "1Q1TeUT7T0v_8u6UgXA_pmKpebCifo7w5"
+  canonical_top_level:
+    - key: start
+      name: "00 START HERE"
+    - key: growth
+      name: "01 GROWTH — Win It"
+    - key: workforce
+      name: "02 WORKFORCE — Staff It"
+    - key: operations
+      name: "03 OPERATIONS — Run It"
+    - key: finance
+      name: "04 FINANCE — Bill It"
+    - key: enablement
+      name: "05 ENABLEMENT — Back It"
+    - key: delivery
+      name: "06 CLIENTS & PROJECTS — Deliver It"
+    - key: governance
+      name: "09 GOVERNANCE & DOCUMENT CONTROL"
+    - key: restricted
+      name: "90 RESTRICTED VAULT"
+      enabled: false
+      activation_gate: "Eli approval plus access test"
+    - key: external
+      name: "95 EXTERNAL EXCHANGE"
+      enabled: false
+      activation_gate: "Eli approval plus sharing test"
+    - key: archive
+      name: "98 ARCHIVE"
+    - key: intake
+      name: "99 INTAKE"
+  only_intake_key: intake
+  max_practical_folder_depth: 2
+
+lifecycle_states:
+  - RECEIVED
+  - EXTRACTED
+  - ROUTE_PROPOSED
+  - EXCEPTION
+  - REVIEW
+  - APPROVAL_REQUESTED
+  - APPROVED
+  - FILED
+  - VERIFIED
+  - ISSUED
+  - SUPERSEDED
+  - ARCHIVED
+  - DISPOSAL_PROPOSED
+  - DISPOSED
+
+required_metadata:
+  - record_id
+  - source_file_id
+  - client_id
+  - project_id
+  - record_class
+  - authority_system
+  - sensitivity
+  - retention_rule
+  - owner
+  - sha256
+  - lifecycle_state
+
+typed_events:
+  - record.received
+  - metadata.extracted
+  - route.proposed
+  - exception.raised
+  - approval.requested
+  - approval.recorded
+  - record.filed
+  - record.verified
+  - record.issued
+  - record.superseded
+  - disposal.proposed
+  - record.disposed
+
+routing:
+  decision_mode: deterministic_policy
+  model_role: extraction_and_suggestion_only
+  use_stable_drive_ids: true
+  use_folder_name_strings: false
+  low_confidence_action: HOLD_IN_INTAKE
+  conflict_action: HOLD_IN_INTAKE
+  missing_metadata_action: HOLD_IN_INTAKE
+  unchanged_approved_result: DECISION_ALREADY_APPROVED
+
+human_gates:
+  always_required:
+    - controlled_document_issue
+    - controlled_document_supersession
+    - disposal
+    - financial
+    - payroll
+    - human_resources
+    - legal
+    - work_health_and_safety
+    - outbound_communication
+    - production
+    - destructive
+    - privilege_or_access
+  approval_receipt_binds:
+    - approver
+    - decision
+    - document_id
+    - version
+    - sha256
+    - timestamp
+
+migration:
+  mode: bounded_batches
+  source_is_read_only_until_cutover: true
+  require_sha256_before_move: true
+  delete_during_migration: false
+  exact_duplicates_require_hash_identity: true
+  non_identical_duplicates_require_human_comparison: true
+  full_estate_bulk_move: false
+  pilot_required: true
+  pilot_cases:
+    - controlled_sop
+    - project_delivery_record
+    - ambiguous_or_restricted_record
+  batch_report_fields:
+    - processed
+    - total
+    - exceptions
+    - duplicates
+    - unresolved_authority_conflicts
+
+external_surfaces:
+  notion_control_room_url: "https://app.notion.com/p/3aff792baa1381f48fa3d54786f39a70"
+  drive_catalog_id: "1sMxpaWfVrO2EQJX4QYq8owfFoCWcTLlv"
+  drive_master_register_id: "1rCAQ4kZDK6YPbH_LBkX4duGTyShYVYQo"
