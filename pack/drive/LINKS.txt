@@ -1,0 +1,6 @@
+CANON=https://github.com/empire-mind/pmps-docs/blob/codex/lock-pmps-document-control-room/docs/canon/CANON.md
+HUMAN_SOP=https://github.com/empire-mind/pmps-docs/blob/codex/lock-pmps-document-control-room/docs/canon/HUMAN-SOP.md
+ROADMAP=https://github.com/empire-mind/pmps-docs/blob/codex/lock-pmps-document-control-room/docs/canon/ROADMAP.md
+DRIVE_SPEC=https://github.com/empire-mind/pmps-docs/blob/codex/lock-pmps-document-control-room/docs/canon/DRIVE-WORKSPACE.md
+GITHUB_PR=https://github.com/empire-mind/pmps-docs/pull/1
+LINEAR=https://linear.app/empiremind/project/pmps-foundations-program-7a7b72036636

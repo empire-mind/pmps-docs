@@ -1,0 +1,101 @@
+name: gitleaks-scan
+# v2 (2026-07-08, Kael) — hardened per the 34-seed-PR review findings:
+#  v2.3 (2026-07-19, Kael) — suppression hardening (closes the v2.2 deferral):
+#     - --ignore-gitleaks-allow: inline `# gitleaks:allow` comments are PR-author-
+#       controlled and no longer suppress findings.
+#     - The checkout's own .gitleaksignore is DELETED before the scan, AND
+#       --gitleaks-ignore-path is pinned to an EMPTY file in $RUNNER_TEMP (outside
+#       the checkout). BOTH are required: live-probed on 8.30.1 (2026-07-19, and
+#       flagged by CodeRabbit on this PR) — the flag is ADDITIVE, gitleaks still
+#       loads <source>/.gitleaksignore even when --gitleaks-ignore-path points
+#       elsewhere, so the pin alone leaves the PR-controlled bypass open. The rm
+#       closes it; the pin stops the default "." lookup from wandering.
+#     - Prerequisite honored first: the adjudicated in-repo suppressions were
+#       PROMOTED to the org variable GITLEAKS_CANONICAL_TOML ([allowlist] paths,
+#       each commented with justification + date): ops-scripts redactor regexes,
+#       pmps-evidence xero fixture, empire-dod-2026 golden-regression
+#       fixtures/results. Promotion-first keeps these gates reachable-green —
+#       an unreachable-red gate is as broken as a gamed green.
+#  v2.2 (2026-07-19, Kael) — folds the Copilot/CodeRabbit findings from the 2026-07-19
+#     PR reviews (plaud-meeting-os #1, pmps-pty-ltd-ops #6, ai-commissioning #1):
+#     - Empty-config false green CLOSED: printf's trailing newline made `test -s` pass
+#       on an EMPTY GITLEAKS_CANONICAL_TOML -> now fail-fast on empty/unset, and PARSE
+#       the materialized TOML (python3 tomllib, runner stdlib) asserting
+#       extend.useDefault == true — a comment-only, wrong-table, duplicate-key, or
+#       `useDefault = false` config all fail closed (round-2 bot findings 2026-07-19;
+#       a plain grep passed wrong-table placements).
+#     - Scan the immutable EVENT SHA: fetch by REF (refs/pull/N/head on PRs, github.ref
+#       on pushes), then check out github.event.pull_request.head.sha / github.sha.
+#       v2.1 fetched a raw SHA on pushes (relied on allowReachableSHA1InWant) and
+#       checked out movable FETCH_HEAD on PRs (TOCTOU window).
+#     - Removed `--unshallow || fetch || true`: the init+fetch clone is already
+#       full-history; the line only swallowed fetch failures and over-fetched.
+#     - gitleaks 8.21.2 -> 8.30.1 (Go 1.24 line; includes the 8.28.0 CVE-2025-22871 /
+#       CVE-2025-22869 fixes + new rules). sha256 re-verified independently 2026-07-19.
+#  v2.1 fix (2026-07-11): cross-repo guardian fetch 404'd under the repo-scoped
+#     GITHUB_TOKEN (private repo, no access) -> config now ships via the org Actions
+#     variable GITLEAKS_CANONICAL_TOML (central, PR-tamper-proof, no cross-repo auth).
+#  P1 config-tamper: scan uses the ORG-CANONICAL config
+#     (--config overrides any repo-local .gitleaks.toml a PR could ship).
+#  P2 fork/TOCTOU: scan the IMMUTABLE event SHA — never a movable branch name.
+#  P2 token-in-URL: auth via http.extraheader, not embedded in the remote URL.
+#  P2 checksum: exact sha256 -c line, not substring grep.
+# Still run-only: the org selected-actions allowlist rejects `uses:` actions.
+
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  gitleaks-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GITLEAKS_VERSION: 8.30.1
+      GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      SCAN_REF: ${{ github.event_name == 'pull_request' && format('refs/pull/{0}/head', github.event.pull_request.number) || github.ref }}
+      EVENT_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Fetch gitleaks (checksum-verified, exact match)
+        run: |
+          set -euo pipefail
+          curl -fsSL -o gitleaks.tgz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          echo "${GITLEAKS_SHA256}  gitleaks.tgz" | sha256sum -c -
+          tar -xzf gitleaks.tgz gitleaks
+      - name: Materialize org-canonical config (org Actions variable — PR cannot tamper)
+        env:
+          CANONICAL_TOML: ${{ vars.GITLEAKS_CANONICAL_TOML }}
+        run: |
+          set -euo pipefail
+          [ -n "${CANONICAL_TOML}" ] || { echo "::error::org variable GITLEAKS_CANONICAL_TOML is empty or unset — refusing a ruleless scan"; exit 1; }
+          printf '%s\n' "${CANONICAL_TOML}" > gitleaks-canonical.toml
+          python3 - <<'PY' || { echo "::error::canonical config does not set [extend] useDefault = true (parsed, not grepped) — the default ruleset would be disabled"; exit 1; }
+          import tomllib
+          with open("gitleaks-canonical.toml", "rb") as f:
+              cfg = tomllib.load(f)
+          assert cfg.get("extend", {}).get("useDefault") is True
+          PY
+      - name: Clone ref, check out immutable event SHA (extraheader auth, full history)
+        run: |
+          set -euo pipefail
+          git init -q repo && cd repo
+          AUTH=$(printf 'x-access-token:%s' "${GH_TOKEN}" | base64 | tr -d '\n')
+          git config http."https://github.com/".extraheader "AUTHORIZATION: basic ${AUTH}"
+          git remote add origin "https://github.com/${REPO}.git"
+          git fetch -q origin "${SCAN_REF}"
+          git checkout -q --detach "${EVENT_SHA}" \
+            || { echo "::error::event SHA ${EVENT_SHA} not reachable from ${SCAN_REF} (ref moved since trigger) — the newer push's own run covers the new tip"; exit 1; }
+      - name: Scan with canonical config (in-repo suppressions neutralized)
+        run: |
+          set -euo pipefail
+          : > "${RUNNER_TEMP}/empty.gitleaksignore"
+          cd repo
+          rm -rf -- .gitleaksignore
+          ../gitleaks git . --config ../gitleaks-canonical.toml \
+            --ignore-gitleaks-allow \
+            --gitleaks-ignore-path "${RUNNER_TEMP}/empty.gitleaksignore" \
+            --redact --no-banner --exit-code 1
+          echo "gitleaks: no leaks found at ${EVENT_SHA} (${SCAN_REF})"

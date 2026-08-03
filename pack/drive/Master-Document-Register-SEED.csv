@@ -1,0 +1,20 @@
+document_id,document_title,department,document_type,status,current_version,sha256,canonical_location,owner,approver,effective_date,review_due_date,supersedes,sensitivity,notion_page_id,linear_issue,notes,pilot_role
+PMPS-STD-GOV-DRIVE-001,Drive Controlled Workspace Spec,GOVERNANCE,STANDARD,UNDER_REVIEW,0.1-canon,,,Eli Halvorson,Ashley Halvorson,,,,INTERNAL,,PMP-93,seeded from canon pack 2026-08-03,canon
+PMPS-PLN-GOV-001,Foundations Roadmap,GOVERNANCE,PLAN,UNDER_REVIEW,0.1-canon,,,Eli Halvorson,Ashley Halvorson,,,,INTERNAL,,PMP-93,seeded from canon pack 2026-08-03,canon
+PMPS-PRO-GOV-001,Human SOP — Controlled Documents,GOVERNANCE,SOP,UNDER_REVIEW,0.1-canon,,,Eli Halvorson,Ashley Halvorson,,,,INTERNAL,,PMP-93,seeded from canon pack 2026-08-03,canon
+PMPS-STD-GOV-CANON-001,Foundations CANON (doctrine),GOVERNANCE,STANDARD,UNDER_REVIEW,0.1-canon,,,Eli Halvorson,Ashley Halvorson,,,,INTERNAL,,PMP-93,seeded from canon pack 2026-08-03,canon
+PMPS-PRO-LEGAL-001,Document Control SOP,GOVERNANCE,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=FOUND priority=P0,minimum_library
+PMPS-REG-LEGAL-001,Master Document Register,GOVERNANCE,REGISTER,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=FOUND priority=P0,minimum_library
+PMPS-STD-ADMIN-001,Information Architecture and File Plan,GOVERNANCE,STANDARD,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=FOUND priority=P0,minimum_library
+PMPS-POL-QMS-001,Quality Policy,QUALITY,POLICY,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=FOUND priority=P0,minimum_library
+PMPS-POL-WHS-001,Work Health and Safety Policy,WHS,POLICY,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=CANDIDATE priority=P0,minimum_library
+PMPS-REG-GOV-001,Legal and Compliance Obligations Register,GOVERNANCE,REGISTER,GAP,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=GAP priority=P0,minimum_library
+PMPS-REG-GOV-002,Enterprise Risk Register,GOVERNANCE,REGISTER,GAP,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=GAP priority=P0,minimum_library
+PMPS-STD-FIN-001,Delegations and Financial Approval Authority,FINANCE,STANDARD,GAP,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=GAP priority=P0,minimum_library
+PMPS-PRO-HR-001,Worker Onboarding and Compliance,WORKFORCE,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=FOUND priority=P0,minimum_library
+PMPS-PRO-OPS-001,Roster Management,OPERATIONS,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=PLANNED priority=P0,minimum_library
+PMPS-PRO-OPS-002,"Attendance, Timesheet and Docket Verification",OPERATIONS,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=PLANNED priority=P0,minimum_library
+PMPS-PRO-FIN-001,Payroll Preparation and Billing Separation,FINANCE,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=PLANNED priority=P0,minimum_library
+PMPS-PRO-FIN-002,Client Invoicing and Evidence Pack,FINANCE,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=CANDIDATE priority=P0,minimum_library
+PMPS-PRO-FIN-003,Supplier and Subcontractor Invoice Verification,FINANCE,SOP,CANDIDATE_CANONICAL,,,,Ashley Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=CANDIDATE priority=P0,minimum_library
+PMPS-REG-IT-001,Business Systems and Authority Register,ENABLEMENT,REGISTER,GAP,,,,Eli Halvorson,Ashley Halvorson,,,,INTERNAL,,,seeded from document-library.yaml status=GAP priority=P0,minimum_library

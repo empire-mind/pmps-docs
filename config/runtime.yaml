@@ -1,0 +1,32 @@
+policy_version: pmps-control-v1.0.0
+routing:
+  minimum_confidence: 0.85
+  always_human_gated_classes:
+    - controlled_document
+    - finance
+    - payroll
+    - hr_private
+    - legal_restricted
+    - work_health_and_safety
+class_routes:
+  controlled_document: governance
+  governance: governance
+  growth: growth
+  workforce: workforce
+  operations: operations
+  finance: finance
+  enablement: enablement
+  client_project: delivery
+  payroll: restricted
+  hr_private: restricted
+  legal_restricted: restricted
+routes:
+  governance: {drive_folder_id: 1wAHHMUNlOPtRjlQ9kvk8cKEjcPqBNGbx, enabled: true}
+  growth: {drive_folder_id: 13TqecKVLVF_zToEx7F_5sfWRfwF_umEo, enabled: true}
+  workforce: {drive_folder_id: 1A1LqZBEmGNBuviX1Faz21EEfCFWbbtCw, enabled: true}
+  operations: {drive_folder_id: 1EplExZZOS_3X-rsWxJN7ncuQxR8OW25R, enabled: true}
+  finance: {drive_folder_id: 1HiqXdymVTWnbd6Ya-8RBUZ9WLkl6CngQ, enabled: true}
+  enablement: {drive_folder_id: 1z5SAYYUA3lFngjscZVfwCv91Afk7tKKR, enabled: true}
+  delivery: {drive_folder_id: 1d5X9a7j_vvct6sgnhQFrzAlcSCLiymRB, enabled: true}
+  restricted: {drive_folder_id: 1KyEktRpLJnmfyMtUDfnbRHHQ_b1APEfZ, enabled: false}
+  intake: {drive_folder_id: 1EbA6SR73GeIOe9DmTAuWPCy9o7pFAFjU, enabled: true}

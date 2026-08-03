@@ -1,0 +1,155 @@
+schema_version: "1.0"
+status_definitions:
+  FOUND: "Artifact located; approval and issue state not implied."
+  PLANNED: "Named in the existing Master Document Register."
+  CANDIDATE: "Useful legacy content requires assessment and consolidation."
+  GAP: "No suitable controlled candidate evidenced."
+  CONDITIONAL: "Activate only when the associated activity or risk applies."
+
+build_waves:
+  - id: W0
+    name: "Control foundation"
+    exit_criteria:
+      - "Document Control SOP ratified"
+      - "Master Document Register verified"
+      - "File plan ratified"
+      - "Approval receipt template issued"
+      - "Migration manifest template issued"
+  - id: W1
+    name: "Low-risk lifecycle pilot"
+    pilot_document: "Client Onboarding Checklist"
+    exit_criteria:
+      - "Hash recorded"
+      - "Candidates compared"
+      - "Owner approval bound to exact version and hash"
+      - "Drive readback verified"
+      - "Audit replay complete"
+  - id: W2
+    name: "WHS control family"
+    candidate_ids:
+      - PMPS_WHS_06
+      - PMPS_WHS_07
+      - PMPS_WHS_08
+      - PMPS_WHS_09
+      - PMPS_WHS_12
+      - PMPS_WHS_13
+      - PMPS_WHS_35
+      - PMPS-PRO-21
+      - PMPS-FRM-22
+      - PMPS-FRM-023
+      - HS-MF-13
+    approval_requirement: "Ashley operational review plus competent WHS/legal review"
+  - id: W3
+    name: "Mobilisation and workforce"
+    restricted: true
+    sequence:
+      - "Blank standard worker templates"
+      - "Recruitment and vetting"
+      - "Employee onboarding"
+      - "Subcontractor onboarding"
+      - "Site mobilisation"
+      - "Qualifications and competency"
+      - "Current worker evidence"
+      - "Offboarded worker records"
+  - id: W4
+    name: "Revenue and finance"
+    sequence:
+      - "Rate-card authority"
+      - "Timesheet and docket verification"
+      - "Payroll and billing separation"
+      - "Client invoicing evidence pack"
+      - "Supplier and subcontractor invoice verification"
+      - "Quote, rate and margin approval"
+      - "Contract review and obligations register"
+
+minimum_controlled_library:
+  - id: PMPS-PRO-LEGAL-001
+    title: "Document Control SOP"
+    type: SOP
+    domain: GOVERNANCE
+    status: FOUND
+    priority: P0
+  - id: PMPS-REG-LEGAL-001
+    title: "Master Document Register"
+    type: REGISTER
+    domain: GOVERNANCE
+    status: FOUND
+    priority: P0
+  - id: PMPS-STD-ADMIN-001
+    title: "Information Architecture and File Plan"
+    type: STANDARD
+    domain: GOVERNANCE
+    status: FOUND
+    priority: P0
+  - id: PMPS-POL-QMS-001
+    title: "Quality Policy"
+    type: POLICY
+    domain: QUALITY
+    status: FOUND
+    priority: P0
+  - id: PMPS-POL-WHS-001
+    title: "Work Health and Safety Policy"
+    type: POLICY
+    domain: WHS
+    status: CANDIDATE
+    priority: P0
+  - id: PMPS-REG-GOV-001
+    title: "Legal and Compliance Obligations Register"
+    type: REGISTER
+    domain: GOVERNANCE
+    status: GAP
+    priority: P0
+  - id: PMPS-REG-GOV-002
+    title: "Enterprise Risk Register"
+    type: REGISTER
+    domain: GOVERNANCE
+    status: GAP
+    priority: P0
+  - id: PMPS-STD-FIN-001
+    title: "Delegations and Financial Approval Authority"
+    type: STANDARD
+    domain: FINANCE
+    status: GAP
+    priority: P0
+  - id: PMPS-PRO-HR-001
+    title: "Worker Onboarding and Compliance"
+    type: SOP
+    domain: WORKFORCE
+    status: FOUND
+    priority: P0
+  - id: PMPS-PRO-OPS-001
+    title: "Roster Management"
+    type: SOP
+    domain: OPERATIONS
+    status: PLANNED
+    priority: P0
+  - id: PMPS-PRO-OPS-002
+    title: "Attendance, Timesheet and Docket Verification"
+    type: SOP
+    domain: OPERATIONS
+    status: PLANNED
+    priority: P0
+  - id: PMPS-PRO-FIN-001
+    title: "Payroll Preparation and Billing Separation"
+    type: SOP
+    domain: FINANCE
+    status: PLANNED
+    priority: P0
+  - id: PMPS-PRO-FIN-002
+    title: "Client Invoicing and Evidence Pack"
+    type: SOP
+    domain: FINANCE
+    status: CANDIDATE
+    priority: P0
+  - id: PMPS-PRO-FIN-003
+    title: "Supplier and Subcontractor Invoice Verification"
+    type: SOP
+    domain: FINANCE
+    status: CANDIDATE
+    priority: P0
+  - id: PMPS-REG-IT-001
+    title: "Business Systems and Authority Register"
+    type: REGISTER
+    domain: ENABLEMENT
+    status: GAP
+    priority: P0
