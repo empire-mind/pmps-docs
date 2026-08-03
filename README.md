@@ -1,46 +1,73 @@
-# PMPS Document Control
+# PMPS Document Control (`pmps-docs`)
 
-This private repository is the machine-readable control package for Premium Mobile Plant Solutions Pty Ltd document governance.
+Machine-readable **control plane** and program status for Premium Mobile Plant Solutions document governance.
+
+> **Status:** Feature branch carries V1 engine; default `main` was empty until merge of that work.  
+> **Program map:** [docs/STATUS.md](docs/STATUS.md) · **Path forward:** [docs/PATH-FORWARD.md](docs/PATH-FORWARD.md)
+
+## What this repo is
+
+- Policy/config for filing and human gates  
+- Runnable control CLI (`pmps-control`) for intake + ledger replay  
+- Architecture and build slices for the wider Foundations engine  
+
+## What this repo is not
+
+- **Not** the brand/design system → see [`pmps-design-system`](https://github.com/empire-mind/pmps-design-system)  
+- **Not** the prose control standard pack → EmpireMind vault `Domain Experts/Business Document Control`  
+- **Not** the AI memory brain → [`pmps-ai-memory`](https://github.com/empire-mind/pmps-ai-memory)  
+- **Not** controlled file storage → Google Drive / approved DMS  
 
 ## Authority boundaries
 
-- Google Drive controlled masters plus the Master Document Register are authoritative for business documents.
-- Notion is the human-facing control room and must project, not replace, the register.
-- GitHub controls schemas, routing policy, validation, tests and migration configuration.
-- Xero, JobAdder, TrackEasy and nominated operational systems remain authoritative for their transactional records.
+| Surface | Role |
+|---------|------|
+| Google Drive (or approved DMS) | Controlled masters + evidence bytes |
+| Master Document Register | Document identity and lifecycle state |
+| This repo (GitHub) | Schemas, routing policy, validation, tests, automation |
+| Notion / Linear | Human projections and delivery — not SoT for controlled docs |
+| Xero / JobAdder / TrackEasy | Transactional authority in their domains |
 
-No employee-facing controlled master, worker personal information, finance evidence, credentials or signed legal material belongs in this repository.
+No employee-facing controlled master, worker PII, finance evidence, credentials, or signed legal material belongs in this repository.
 
-## Locked foundation
+## Quick start (V1)
 
-- One Shared Drive.
-- One intake lane: `99 INTAKE`.
-- One controlled-document identity per concept.
-- Deterministic routing from stable Drive IDs and metadata.
-- Human approval for issue, supersession, disposal, financial, legal, WHS, HR and access decisions.
-- SHA-256 before migration or duplicate decisions.
-- No production migration until the pilot and access tests pass.
+```bash
+python -m venv .venv && source .venv/bin/activate   # or Windows equivalent
+pip install -e . pytest
+pytest -q
+pmps-control intake ./sample.txt --metadata meta.json --confidence 0.99
+pmps-control replay <record_id>
+```
 
-## Repository map
+## Repository map (actual tree)
 
 ```text
-config/control-room.yaml       Canonical authority, folders, states and gates
-config/document-library.yaml   Required document families and build waves
-schemas/record.schema.json     Record metadata contract
-schemas/event.schema.json      Auditable event contract
-docs/CONTROL-ROOM.md           Human operating view
-docs/MIGRATION-PLAYBOOK.md     Bounded migration procedure
-scripts/validate_control.py    Offline configuration validator
-tests/test_control.py          Golden control tests
+config/control-room.yaml     Authority, folders, gates, lifecycle names
+config/document-library.yaml Minimum library + build waves (incl. GAP rows)
+config/runtime.yaml          Route table + confidence thresholds
+src/pmps_control/            CLI, policy, ledger, intake runtime
+tests/test_runtime.py
+docs/STATUS.md               Program-wide GitHub-grounded status
+docs/PATH-FORWARD.md         Clean delivery path
+docs/ARCHITECTURE-BLUEPRINT.md
+docs/BUILD-PLAN.md
+docs/ADR-001-OPEN-SOURCE-STACK.md
+Dockerfile / compose.yaml    Hardened offline control container
 ```
 
-## Validate
+## Related repositories
 
-```powershell
-python scripts/validate_control.py
-python -m unittest discover -s tests -v
-```
+| Repo | Layer |
+|------|--------|
+| [pmps-design-system](https://github.com/empire-mind/pmps-design-system) | Document **design** (brand, validator, skill) |
+| [pmps-core](https://github.com/empire-mind/pmps-core) | Enterprise / product canon (md) |
+| [pmps-ai-memory](https://github.com/empire-mind/pmps-ai-memory) | AI memory and skills |
+| [librarian](https://github.com/empire-mind/librarian) | Estate inventory (gap inputs) |
+| [pmps-evidence](https://github.com/empire-mind/pmps-evidence) | Evidence binder |
+| [pmps-runbooks](https://github.com/empire-mind/pmps-runbooks) | Human ops procedures |
 
 ## Current truth
 
-This package defines the approved control design. It does not prove production runtime, folder permissions, document approval, migration completion or deletion authority. Those require external readback and approval receipts.
+This package defines control design and a **thin** runnable intake/replay path.  
+It does **not** by itself prove production Drive permissions, owner approval, migration completion, gap-analysis automation, or full lifecycle issuance. Those require external readback and the path in `docs/PATH-FORWARD.md`.
