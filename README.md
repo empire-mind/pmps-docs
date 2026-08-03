@@ -3,7 +3,9 @@
 Machine-readable **control plane** and program status for Premium Mobile Plant Solutions document governance.
 
 > **Status:** Feature branch carries V1 engine; default `main` was empty until merge of that work.  
-> **Program map:** [docs/STATUS.md](docs/STATUS.md) · **Path forward:** [docs/PATH-FORWARD.md](docs/PATH-FORWARD.md)
+> **CANON (single SoT):** [docs/canon/CANON.md](docs/canon/CANON.md) · [HUMAN-SOP](docs/canon/HUMAN-SOP.md) · [ROADMAP](docs/canon/ROADMAP.md)
+>
+> Also: [STATUS](docs/STATUS.md) · [PATH-FORWARD](docs/PATH-FORWARD.md) (reference detail)
 
 ## What this repo is
 
