@@ -23,37 +23,46 @@ principals:
 drive:
   shared_drive_id: "0AGC3u-mEfahxUk9PVA"
   foundations_folder_id: "1Q1TeUT7T0v_8u6UgXA_pmKpebCifo7w5"
+  filing_generation: "2026-08-05"
   canonical_top_level:
-    - key: start
-      name: "00 START HERE"
-    - key: growth
-      name: "01 GROWTH — Win It"
-    - key: workforce
-      name: "02 WORKFORCE — Staff It"
-    - key: operations
-      name: "03 OPERATIONS — Run It"
-    - key: finance
-      name: "04 FINANCE — Bill It"
-    - key: enablement
-      name: "05 ENABLEMENT — Back It"
-    - key: delivery
-      name: "06 CLIENTS & PROJECTS — Deliver It"
-    - key: governance
-      name: "09 GOVERNANCE & DOCUMENT CONTROL"
-    - key: restricted
-      name: "90 RESTRICTED VAULT"
-      enabled: false
-      activation_gate: "Eli approval plus access test"
-    - key: external
-      name: "95 EXTERNAL EXCHANGE"
-      enabled: false
-      activation_gate: "Eli approval plus sharing test"
-    - key: archive
-      name: "98 ARCHIVE"
     - key: intake
-      name: "99 INTAKE"
+      name: "00 Inbox"
+      drive_folder_id: "1454WTIejGG2OD4xwC6I0dXkbLvJQoFHn"
+    - key: growth
+      name: "01 Growth"
+      drive_folder_id: "1f3LmRr4toAw3AR2AztULeCmjSSXmB3cr"
+    - key: workforce
+      name: "02 Workforce"
+      drive_folder_id: "1qDoMtbod4P0HUimYZp_sUtEjJYFwyMda"
+    - key: operations
+      name: "03 Operations"
+      drive_folder_id: "16u528B1KeTO46nbiYAFNY3iUnlK_xNDl"
+    - key: finance
+      name: "04 Finance"
+      drive_folder_id: "19v5nLRYY6SW9SIh_JmwOhMTGGTXN_H9c"
+    - key: enablement
+      name: "05 Enablement"
+      drive_folder_id: "1hQhFiJK_L04e37IYfDpkvLCIulTDvGD_"
+    - key: governance
+      name: "09 Governance"
+      drive_folder_id: "1zqzXvkeGAh_xG5aFlSEk0cY0dajvl7Cz"
+    - key: private_vault
+      name: "90 Private Vault"
+      drive_folder_id: "1rzcoLbChwG3mRR850hctemXWbnqgv29w"
+      enabled: false
+      activation_gate: "limited-access permission test"
+    - key: archive
+      name: "99 Archive"
+      drive_folder_id: "1hZ0BUN4cNwO3zTisIX9z9dpaQRUbERKi"
+    - key: duplicates_review
+      name: "_DUPLICATES_TO_REVIEW"
+      drive_folder_id: "1GXyjiUlI5inHuGOUtRIkKVW8lriwYNgH"
+      enabled: false
   only_intake_key: intake
   max_practical_folder_depth: 2
+  legacy_generations_read_only:
+    - "00 — PMPS Business Filing System (TARGET)"
+    - "August 1 V1 scaffold"
 
 lifecycle_states:
   - RECEIVED

@@ -1,32 +1,49 @@
-policy_version: pmps-control-v1.0.0
+schema_version: "1.1"
+policy_version: pmps-control-1.1.0-aug5
+filing_generation: "2026-08-05"
 routing:
   minimum_confidence: 0.85
+  only_intake_key: intake
   always_human_gated_classes:
     - controlled_document
     - finance
+    - supplier_bill
+    - sales_invoice
+    - receipt_expense
     - payroll
     - hr_private
     - legal_restricted
     - work_health_and_safety
 class_routes:
-  controlled_document: governance
+  controlled_document: controlled_documents
   governance: governance
   growth: growth
   workforce: workforce
   operations: operations
+  client_project: clients_sites
   finance: finance
+  supplier_bill: bills_in
+  sales_invoice: invoices_out
+  receipt_expense: receipts_expenses
+  rates_margin: rates_margin
   enablement: enablement
-  client_project: delivery
-  payroll: restricted
-  hr_private: restricted
-  legal_restricted: restricted
+  payroll: private_vault
+  hr_private: private_vault
+  legal_restricted: private_vault
 routes:
-  governance: {drive_folder_id: 1wAHHMUNlOPtRjlQ9kvk8cKEjcPqBNGbx, enabled: true}
-  growth: {drive_folder_id: 13TqecKVLVF_zToEx7F_5sfWRfwF_umEo, enabled: true}
-  workforce: {drive_folder_id: 1A1LqZBEmGNBuviX1Faz21EEfCFWbbtCw, enabled: true}
-  operations: {drive_folder_id: 1EplExZZOS_3X-rsWxJN7ncuQxR8OW25R, enabled: true}
-  finance: {drive_folder_id: 1HiqXdymVTWnbd6Ya-8RBUZ9WLkl6CngQ, enabled: true}
-  enablement: {drive_folder_id: 1z5SAYYUA3lFngjscZVfwCv91Afk7tKKR, enabled: true}
-  delivery: {drive_folder_id: 1d5X9a7j_vvct6sgnhQFrzAlcSCLiymRB, enabled: true}
-  restricted: {drive_folder_id: 1KyEktRpLJnmfyMtUDfnbRHHQ_b1APEfZ, enabled: false}
-  intake: {drive_folder_id: 1EbA6SR73GeIOe9DmTAuWPCy9o7pFAFjU, enabled: true}
+  intake: {display_path: "00 Inbox", drive_folder_id: "1454WTIejGG2OD4xwC6I0dXkbLvJQoFHn", enabled: true}
+  growth: {display_path: "01 Growth", drive_folder_id: "1f3LmRr4toAw3AR2AztULeCmjSSXmB3cr", enabled: true}
+  workforce: {display_path: "02 Workforce", drive_folder_id: "1qDoMtbod4P0HUimYZp_sUtEjJYFwyMda", enabled: true}
+  operations: {display_path: "03 Operations", drive_folder_id: "16u528B1KeTO46nbiYAFNY3iUnlK_xNDl", enabled: true}
+  clients_sites: {display_path: "03 Operations/Clients & Sites", drive_folder_id: "1qB1QT8QsmhbcGQY_dqhRQuWwgQyD9yHK", enabled: true}
+  finance: {display_path: "04 Finance", drive_folder_id: "19v5nLRYY6SW9SIh_JmwOhMTGGTXN_H9c", enabled: true}
+  bills_in: {display_path: "04 Finance/Bills In", drive_folder_id: "1JpvIFPeuD5HIYltRdvgnQbNXTqqrR29g", enabled: true}
+  invoices_out: {display_path: "04 Finance/Invoices Out", drive_folder_id: "11CKRyjdYu6j4DQwFQMpPnwpna8qi3xjN", enabled: true}
+  receipts_expenses: {display_path: "04 Finance/Receipts & Expenses", drive_folder_id: "1rLgf_upaKutS8dJKW1pW_pbdh421Sg4p", enabled: true}
+  rates_margin: {display_path: "04 Finance/Rates & Margin", drive_folder_id: "1I0nqoqFAkTcE7v7T5fXeK0XovXCr-g9Q", enabled: true}
+  enablement: {display_path: "05 Enablement", drive_folder_id: "1hQhFiJK_L04e37IYfDpkvLCIulTDvGD_", enabled: true}
+  governance: {display_path: "09 Governance", drive_folder_id: "1zqzXvkeGAh_xG5aFlSEk0cY0dajvl7Cz", enabled: true}
+  controlled_documents: {display_path: "09 Governance/Controlled Documents", drive_folder_id: "1w2Zeskwsts-YJWvAJvuTjxme_0iPtPSy", enabled: true}
+  private_vault: {display_path: "90 Private Vault", drive_folder_id: "1rzcoLbChwG3mRR850hctemXWbnqgv29w", enabled: false, activation_gate: "limited-access permission test"}
+  archive: {display_path: "99 Archive", drive_folder_id: "1hZ0BUN4cNwO3zTisIX9z9dpaQRUbERKi", enabled: true, lifecycle_only: true}
+  duplicates_review: {display_path: "_DUPLICATES_TO_REVIEW", drive_folder_id: "1GXyjiUlI5inHuGOUtRIkKVW8lriwYNgH", enabled: false, exception_only: true}

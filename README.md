@@ -14,7 +14,11 @@ No employee-facing controlled master, worker personal information, finance evide
 ## Locked foundation
 
 - One Shared Drive.
-- One intake lane: `99 INTAKE`.
+- Canonical filing generation: `2026-08-05`.
+- One intake lane: `00 Inbox` (`1454WTIejGG2OD4xwC6I0dXkbLvJQoFHn`).
+- Client and site records live under `03 Operations/Clients & Sites`.
+- `90 Private Vault` remains disabled until limited-access permissions pass representative-account tests.
+- Older July/August 1 scaffolds are read-only legacy and are never automatic routing targets.
 - One controlled-document identity per concept.
 - Deterministic routing from stable Drive IDs and metadata.
 - Human approval for issue, supersession, disposal, financial, legal, WHS, HR and access decisions.

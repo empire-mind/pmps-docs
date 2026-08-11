@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-08-11",
+  "shared_drive_id": "0AGC3u-mEfahxUk9PVA",
+  "filing_generation": "2026-08-05",
+  "source": "Google Drive files.list and files.get readback",
+  "canonical_routes": {
+    "intake": {"name": "00 Inbox", "id": "1454WTIejGG2OD4xwC6I0dXkbLvJQoFHn"},
+    "growth": {"name": "01 Growth", "id": "1f3LmRr4toAw3AR2AztULeCmjSSXmB3cr"},
+    "workforce": {"name": "02 Workforce", "id": "1qDoMtbod4P0HUimYZp_sUtEjJYFwyMda"},
+    "operations": {"name": "03 Operations", "id": "16u528B1KeTO46nbiYAFNY3iUnlK_xNDl"},
+    "finance": {"name": "04 Finance", "id": "19v5nLRYY6SW9SIh_JmwOhMTGGTXN_H9c"},
+    "enablement": {"name": "05 Enablement", "id": "1hQhFiJK_L04e37IYfDpkvLCIulTDvGD_"},
+    "governance": {"name": "09 Governance", "id": "1zqzXvkeGAh_xG5aFlSEk0cY0dajvl7Cz"},
+    "private_vault": {"name": "90 Private Vault", "id": "1rzcoLbChwG3mRR850hctemXWbnqgv29w"},
+    "archive": {"name": "99 Archive", "id": "1hZ0BUN4cNwO3zTisIX9z9dpaQRUbERKi"},
+    "duplicates_review": {"name": "_DUPLICATES_TO_REVIEW", "id": "1GXyjiUlI5inHuGOUtRIkKVW8lriwYNgH"}
+  },
+  "verified_children": {
+    "clients_sites": {"name": "Clients & Sites", "id": "1qB1QT8QsmhbcGQY_dqhRQuWwgQyD9yHK"},
+    "bills_in": {"name": "Bills In", "id": "1JpvIFPeuD5HIYltRdvgnQbNXTqqrR29g"},
+    "invoices_out": {"name": "Invoices Out", "id": "11CKRyjdYu6j4DQwFQMpPnwpna8qi3xjN"},
+    "receipts_expenses": {"name": "Receipts & Expenses", "id": "1rLgf_upaKutS8dJKW1pW_pbdh421Sg4p"},
+    "rates_margin": {"name": "Rates & Margin", "id": "1I0nqoqFAkTcE7v7T5fXeK0XovXCr-g9Q"},
+    "controlled_documents": {"name": "Controlled Documents", "id": "1w2Zeskwsts-YJWvAJvuTjxme_0iPtPSy"}
+  },
+  "permission_gate": {
+    "private_vault_has_augmented_permissions": false,
+    "private_vault_enabled_for_agent_routing": false,
+    "status": "BLOCKED_PENDING_LIMITED_ACCESS_CONFIGURATION_AND_TEST"
+  },
+  "master_register_receipt": {
+    "file_id": "1rCAQ4kZDK6YPbH_LBkX4duGTyShYVYQo",
+    "name": "PMPS-REG-LEGAL-001_Master-Document-Register_v1.0.xlsx",
+    "destination_parent_id": "1JXRWoItK8-jkAnwIb8WP7SztPAQODvHe",
+    "stable_id_preserved": true,
+    "drive_readback_verified": true,
+    "content_reconciliation_status": "PENDING_LEGACY_LOCATION_LINK_UPDATE"
+  },
+  "legacy_policy": "Existing July and August 1 scaffolds remain read-only and are not routing targets.",
+  "destructive_actions_performed": false
+}
