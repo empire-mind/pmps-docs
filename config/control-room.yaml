@@ -50,6 +50,10 @@ drive:
       name: "90 Private Vault"
       drive_folder_id: "1rzcoLbChwG3mRR850hctemXWbnqgv29w"
       enabled: false
+      proposed_access_principals:
+        - "ash@empiremind.ai"
+        - "eli@empiremind.ai"
+      access_principals_status: "DECLARED_NOT_APPLIED"
       activation_gate: "limited-access permission test"
     - key: archive
       name: "99 Archive"

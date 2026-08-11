@@ -59,6 +59,7 @@ Premium Mobile Plant Solutions/
 4. Client and site evidence routes to `03 Operations/Clients & Sites`.
 5. Controlled documents route to `09 Governance/Controlled Documents` only after human approval bound to exact version and SHA-256.
 6. `90 Private Vault` is fail-closed until Google limited-access permissions are configured and tested. Payroll, medical and private HR records must remain in Inbox or their authoritative system until then.
+   Proposed access principals are `ash@empiremind.ai` and `eli@empiremind.ai`; this declaration is not permission readback evidence.
 7. `99 Archive` is lifecycle-only. No model may archive or dispose autonomously.
 8. `_DUPLICATES_TO_REVIEW` is exception-only. Hash-identical duplicates may be proposed; non-identical candidates require human comparison.
 9. July and August 1 filing scaffolds are legacy read-only. They are never routing targets and are not deleted during cutover.

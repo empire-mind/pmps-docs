@@ -44,6 +44,12 @@ routes:
   enablement: {display_path: "05 Enablement", drive_folder_id: "1hQhFiJK_L04e37IYfDpkvLCIulTDvGD_", enabled: true}
   governance: {display_path: "09 Governance", drive_folder_id: "1zqzXvkeGAh_xG5aFlSEk0cY0dajvl7Cz", enabled: true}
   controlled_documents: {display_path: "09 Governance/Controlled Documents", drive_folder_id: "1w2Zeskwsts-YJWvAJvuTjxme_0iPtPSy", enabled: true}
-  private_vault: {display_path: "90 Private Vault", drive_folder_id: "1rzcoLbChwG3mRR850hctemXWbnqgv29w", enabled: false, activation_gate: "limited-access permission test"}
+  private_vault:
+    display_path: "90 Private Vault"
+    drive_folder_id: "1rzcoLbChwG3mRR850hctemXWbnqgv29w"
+    enabled: false
+    proposed_access_principals: ["ash@empiremind.ai", "eli@empiremind.ai"]
+    access_principals_status: "DECLARED_NOT_APPLIED"
+    activation_gate: "limited-access permission test"
   archive: {display_path: "99 Archive", drive_folder_id: "1hZ0BUN4cNwO3zTisIX9z9dpaQRUbERKi", enabled: true, lifecycle_only: true}
   duplicates_review: {display_path: "_DUPLICATES_TO_REVIEW", drive_folder_id: "1GXyjiUlI5inHuGOUtRIkKVW8lriwYNgH", enabled: false, exception_only: true}
